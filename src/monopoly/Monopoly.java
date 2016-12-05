@@ -5,6 +5,7 @@
  */
 package monopoly;
 import Controleur.*;
+import Model.*;
 /**
  *
  * @author dodee
@@ -17,7 +18,8 @@ public class Monopoly {
     public static void main(String[] args) {
          String fileName = "data.txt";
          Controleur controleur = new Controleur();
-         controleur.CreerPlateau("data.txt");
+         controleur.creerPlateau("/users/info/etu-s2/dodee/COO/Monopoly/src/monopoly/data.txt");
+         Carreaux c1 = new Gare();
     }
     
 }

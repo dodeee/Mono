@@ -6,6 +6,14 @@ public abstract class Propriete extends Carreaux {
 	private int prix;
 	private String nomPropriete;
 
+    
+        
+        public Propriete(Joueur proprietaire, int prix, int numero, String nomCarreau) {
+        super(numero, nomCarreau);
+        this.proprietaire = proprietaire;
+        this.prix = prix;
+    }
+
 	/**
 	 * 
 	 * @param jCourant

@@ -6,8 +6,13 @@ public abstract class Carreaux {
 	private String nomCarreau;
 
 	public int getNumCarreau() {
-		// TODO - implement Carreaux.getNumCarreau
-		throw new UnsupportedOperationException();
+		return numero;
 	}
 
+    public Carreaux(int numero, String nomCarreau) {
+        this.numero = numero;
+        this.nomCarreau = nomCarreau;
+    }
+
+        
 }

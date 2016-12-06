@@ -10,6 +10,10 @@ public class Joueur {
 	private String nomJoueur;
 	private int cash = 1500;
 
+    public Joueur(String nomJoueur) {
+        this.nomJoueur = nomJoueur;
+    }
+
 	/**
 	 * 
 	 * @param l
@@ -31,6 +35,14 @@ public class Joueur {
 	public int getCash() {
 		return this.cash;
 	}
+
+    public String getNomJoueur() {
+        return nomJoueur;
+    }
+
+    public void setNomJoueur(String nomJoueur) {
+        this.nomJoueur = nomJoueur;
+    }
 
 	/**
 	 * 

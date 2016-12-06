@@ -2,8 +2,8 @@ package Model;
 
 public class Compagnie extends Propriete {
 
-    public Compagnie(Joueur proprietaire, int prix, int numero, String nomCarreau) {
-        super(proprietaire, prix, numero, nomCarreau);
+    public Compagnie( int numero, String nomCarreau,int prix) {
+        super(prix, numero, nomCarreau);
     }
 
 
@@ -12,4 +12,4 @@ public class Compagnie extends Propriete {
 		throw new UnsupportedOperationException();
 	}
 
-}
+}//

@@ -1,10 +1,10 @@
 package Model;
 
 public class ProprieteAConstruire extends Propriete {
-
-    public ProprieteAConstruire(Groupe Groupe, Joueur proprietaire, int prix, int numero, String nomCarreau) {
-        super(proprietaire, prix, numero, nomCarreau);
-        this.Groupe = Groupe;
+//
+    public ProprieteAConstruire(int numero,String nomCarreau,int prix  ) {
+        super(prix, numero, nomCarreau);
+    //    this.Groupe = Groupe;
     }
 
    

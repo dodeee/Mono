@@ -12,4 +12,4 @@ public class Groupe {
 		throw new UnsupportedOperationException();
 	}
 
-}
+}//

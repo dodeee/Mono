@@ -12,3 +12,4 @@ package Utilitaire;
 public enum TypeCommande {
     
 }
+//

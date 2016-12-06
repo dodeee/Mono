@@ -7,10 +7,9 @@ public abstract class Propriete extends Carreaux {
 	private String nomPropriete;
 
     
-        
-        public Propriete(Joueur proprietaire, int prix, int numero, String nomCarreau) {
+        public Propriete(int prix, int numero, String nomCarreau) {
         super(numero, nomCarreau);
-        this.proprietaire = proprietaire;
+        this.proprietaire = null;
         this.prix = prix;
     }
 

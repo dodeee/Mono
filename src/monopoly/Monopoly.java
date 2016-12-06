@@ -6,6 +6,8 @@
 package monopoly;
 import Controleur.*;
 import Model.*;
+import java.util.Scanner;
+import Utilitaire.*;
 /**
  *
  * @author dodee
@@ -19,7 +21,17 @@ public class Monopoly {
          String fileName = "data.txt";
          Controleur controleur = new Controleur();
          controleur.creerPlateau("/users/info/etu-s2/dodee/COO/Monopoly/src/monopoly/data.txt");
+         controleur.affiche();
+         
+         
+         
+         
          
     }
     
-}
+    
+    
+    
+    
+    
+}//

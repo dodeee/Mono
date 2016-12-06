@@ -2,7 +2,7 @@ package Model;
 
 public class Gare extends Propriete {
 
-    public Gare(Joueur proprietaire, int prix, int numero, String nomCarreau) {
-        super(proprietaire, prix, numero, nomCarreau);
+    public Gare(int numero, String nomCarreau, int prix) {
+        super(prix, numero, nomCarreau);
     }
-}
+}//

@@ -14,5 +14,13 @@ public abstract class Carreaux {
         this.nomCarreau = nomCarreau;
     }
 
+    public String getNomCarreau() {
+        return nomCarreau;
+    }
+
+    public void setNomCarreau(String nomCarreau) {
+        this.nomCarreau = nomCarreau;
+    }
+
         
-}
+}//

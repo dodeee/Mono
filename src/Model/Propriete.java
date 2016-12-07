@@ -18,30 +18,19 @@ public abstract class Propriete extends Carreaux {
 	 * @param jCourant
 	 */
 	public void acheterPropriete(Joueur jCourant) {
-		// TODO - implement Propriete.acheterPropriete
-		throw new UnsupportedOperationException();
+
+            
 	}
 
-	/**
-	 * 
-	 * @param jAch
-	 * @param JRec
-	 * @param valDes
-	 */
+        
 	public void payerLoyer(Joueur jAch, Joueur JRec, int valDes) {
 		// TODO - implement Propriete.payerLoyer
 		throw new UnsupportedOperationException();
 	}
 
-	public int getPrixAchat() {
-		// TODO - implement Propriete.getPrixAchat
-		throw new UnsupportedOperationException();
-	}
+	public abstract int getPrixAchat();
 
-	/**
-	 * 
-	 * @param jCourant
-	 */
+        
 	public void setProprietaire(Joueur jCourant) {
 		this.proprietaire = jCourant;
 	}
@@ -54,10 +43,8 @@ public abstract class Propriete extends Carreaux {
 	 * 
 	 * @param valDes
 	 */
-	public int calculLoyer(int valDes) {
-		// TODO - implement Propriete.calculLoyer
-		throw new UnsupportedOperationException();
-	}
+	public abstract int calculLoyer(int valDes) ;
+		
 
 	public void getValeurs() {
 		// TODO - implement Propriete.getValeurs

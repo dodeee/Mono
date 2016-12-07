@@ -4,9 +4,10 @@ import java.util.*;
 
 public class Joueur {
 
-	private ArrayList<Propriete> gares;
-	private Carreaux positionCourante;
-	private ArrayList<Propriete> proprietes;
+	private ArrayList<ProprieteAConstruire> proprietesaconstruire;
+        private ArrayList<Gare> gares;
+        private ArrayList<Compagnie> compagnies;
+	private Carreaux positionCourante;	
 	private String nomJoueur;
 	private int cash = 1500;
 
@@ -87,8 +88,8 @@ public class Joueur {
 	 * 
 	 * @param g
 	 */
-	public void isGroupeComplet(Groupe g) {
-            For ()
+	public boolean isGroupeComplet(Groupe g) {
+            return this.getNbPropCeGroupe(g)==g.getNbProprieteGr();
 	}
 
 	/**
@@ -96,8 +97,12 @@ public class Joueur {
 	 * @param g
 	 */
 	public int getNbPropCeGroupe(Groupe g) {
-		// TODO - implement Joueur.getNbPropCeGroupe
-		throw new UnsupportedOperationException();
+            int nb=0;
+		for (ProprieteAConstruire p : proprietesaconstruire){
+                    if(p.getGroupe()==g)
+                        nb=nb+1;
+                }
+                return nb;    
 	}
 
 }

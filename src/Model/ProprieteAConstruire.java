@@ -12,13 +12,21 @@ public class ProprieteAConstruire extends Propriete {
 	private Groupe Groupe;
 
 	public int getLoyerNu() {
-		// TODO - implement ProprieteAConstruire.getLoyerNu
-		throw new UnsupportedOperationException();
+		return super.prix;
 	}
 
 	public Groupe getGroupe() {
-		// TODO - implement ProprieteAConstruire.getGroupe
-		throw new UnsupportedOperationException();
+		return Groupe;
 	}
+
+    @Override
+    public int getPrixAchat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int calculLoyer(int valDes) {
+        if 
+    }
 
 }

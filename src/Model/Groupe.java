@@ -8,8 +8,20 @@ public class Groupe {
 	private CouleurPropriete couleur;
 
 	public int getNbProprieteGr() {
-		// TODO - implement Groupe.getNbProprieteGr
-		throw new UnsupportedOperationException();
+            int nb=0;
+		for (ProprieteAConstruire p : proprietes ){
+                    nb=nb+1;
+                }
+                return nb;
+                    
 	}
+
+    public CouleurPropriete getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(CouleurPropriete couleur) {
+        this.couleur = couleur;
+    }
 
 }//

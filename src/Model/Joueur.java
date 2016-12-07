@@ -87,9 +87,8 @@ public class Joueur {
 	 * 
 	 * @param g
 	 */
-	public void isGroupeComplet(int g) {
-		// TODO - implement Joueur.isGroupeComplet
-		throw new UnsupportedOperationException();
+	public void isGroupeComplet(Groupe g) {
+            For ()
 	}
 
 	/**

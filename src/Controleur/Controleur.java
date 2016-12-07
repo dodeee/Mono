@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import ui.Ihm;
-import zob;
 public class Controleur implements Observer{
       
      

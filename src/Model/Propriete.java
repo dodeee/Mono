@@ -3,7 +3,7 @@ package Model;
 public abstract class Propriete extends Carreaux {
 
 	private Joueur proprietaire;
-	private int prix;
+	protected int prix;
 	private String nomPropriete;
 
     
@@ -18,14 +18,20 @@ public abstract class Propriete extends Carreaux {
 	 * @param jCourant
 	 */
 	public void acheterPropriete(Joueur jCourant) {
-            jCourant.setnvCash(this.prix);
+            jCourant.setCash(jCourant.getCash()-this.prix);
             this.setProprietaire(jCourant);
             jCourant.addPropriete(this);            
 	}
 
         
-	public void payerLoyer(Joueur jAch, Joueur JRec){
-            
+	public void payerLoyer(Joueur jCourant, Joueur jProprio, int valDes){
+            int Loyer=this.calculLoyer(valDes);
+            if(Loyer<jCourant.getCash()){
+                jProprio.setCash(Loyer+jProprio.getCash());
+                jCourant.setCash(jCourant.getCash()-Loyer);                
+            }else {
+                
+            }
         }
 
 	public abstract int getPrixAchat();

@@ -49,18 +49,16 @@ public class Joueur {
 	 * @param prix
 	 * @param cash
 	 */
-	public void setnvCash(int prix, int cash) {
-		// TODO - implement Joueur.setnvCash
-		throw new UnsupportedOperationException();
-	}
+    public void setnvCash(int prix) {
+	this.cash=cash-prix;
+    }
 
 	/**
 	 * 
 	 * @param p
 	 */
 	public void addPropriete(Propriete p) {
-		// TODO - implement Joueur.addPropriete
-		throw new UnsupportedOperationException();
+		this.proprietes.add(p);
 	}
 
 	public int getnbGare() {

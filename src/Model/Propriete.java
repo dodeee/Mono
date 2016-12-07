@@ -18,15 +18,15 @@ public abstract class Propriete extends Carreaux {
 	 * @param jCourant
 	 */
 	public void acheterPropriete(Joueur jCourant) {
-
-            
+            jCourant.setnvCash(this.prix);
+            this.setProprietaire(jCourant);
+            jCourant.addPropriete(this);            
 	}
 
         
-	public void payerLoyer(Joueur jAch, Joueur JRec, int valDes) {
-		// TODO - implement Propriete.payerLoyer
-		throw new UnsupportedOperationException();
-	}
+	public void payerLoyer(Joueur jAch, Joueur JRec){
+            
+        }
 
 	public abstract int getPrixAchat();
 

@@ -49,8 +49,8 @@ public class Joueur {
 	 * @param prix
 	 * @param cash
 	 */
-    public void setnvCash(int prix) {
-	this.cash=cash-prix;
+    public void setCash(int prix) {
+	this.cash=prix;
     }
 
 	/**

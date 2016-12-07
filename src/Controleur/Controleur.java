@@ -9,16 +9,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import ui.Ihm;
 
-public class Controleur {
+public class Controleur implements Observer{
       
      
-	private ArrayList<Carreaux> carreaux;
+	private HashMap<Integer,Carreaux> carreaux;
 	private ArrayList<Joueur> joueurs;
         private Ihm ihm;
+        private static final Random RANDOM = new Random();
 
-    public Controleur() {
-        this.carreaux=new ArrayList<>();
+    public Controleur(Ihm ihm) {
+        this.carreaux=new HashMap<>();
         this.joueurs=new ArrayList<>();
+        this.ihm=ihm;
         
     }
         
@@ -36,25 +38,25 @@ public class Controleur {
 			for(int i=0; i<data.size(); ++i){
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
-					System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+					
                                         Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
-                                        carreaux.add(c);
+                                        carreaux.put(i,c);
                                        
 				}
 				else if(caseType.compareTo("G") == 0){
-					System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+					
                                         Carreaux c = new Gare(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
-                                        carreaux.add(c);
+                                        carreaux.put(i,c);
 				}
 				else if(caseType.compareTo("C") == 0){
-					System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+					
                                         Carreaux c = new Compagnie(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
-                                        carreaux.add(c);
+                                        carreaux.put(i,c);
 				}
 				else if(caseType.compareTo("AU") == 0){
-					System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
+					
                                         Carreaux c = new AutreCarreau(Integer.parseInt(data.get(i)[1]),data.get(i)[2]);
-                                        carreaux.add(c);
+                                        carreaux.put(i,c);
 				}
 				else
 					System.err.println("[buildGamePleateau()] : Invalid Data type");
@@ -90,9 +92,12 @@ public class Controleur {
 	 * @param j
 	 * @param nb
 	 */
-	private Carreaux avancer(Joueur j, int nb) {
-		// TODO - implement Controleur.avancer
-		throw new UnsupportedOperationException();
+	private void avancer(Joueur j, int nb) {
+            j.getPositionCourante();
+          int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),nb);
+           Carreaux nc=this.carreaux.get(numC);
+            j.setPositionCourante(nc);
+	    	
 	}
 
 	/**
@@ -114,9 +119,8 @@ public class Controleur {
 	 * @param num
 	 * @param nb
 	 */
-	public int CalculNouvPos(int num, int nb) {
-		// TODO - implement Controleur.CalculNouvPos
-		throw new UnsupportedOperationException();
+	public int calculNouvPos(int num, int nb) {
+		return num+nb;
 	}
 
 	/**
@@ -130,30 +134,49 @@ public class Controleur {
 
 
         public void affiche(){
-        for (Carreaux c: carreaux){
-            System.out.println(c.getNumCarreau()+" "+c.getNomCarreau());
+        for (Integer i: carreaux.keySet()){
+            System.out.println(carreaux.get(i).getNumCarreau()+" "+carreaux.get(i).getNomCarreau());
         }
         
         }
          public void affichej(){
         for (Joueur c: joueurs){
-            System.out.println(c.getNomJoueur());
+            System.out.println("joueurs : "+c.getNomJoueur());
         }
          }
-    public ArrayList<Carreaux> getCarreaux() {
-        return carreaux;
-    }
+         
+   
+        
 
-    public void setCarreaux(ArrayList<Carreaux> carreaux) {
-        this.carreaux = carreaux;
-    }
-
-    public ArrayList<Joueur> getJoueurs() {
+   
+         public ArrayList<Joueur> getJoueurs() {
         return joueurs;
-    }
+   
+         }
 
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
+   
+         public void setJoueurs(ArrayList<Joueur> joueurs) {
+   
         this.joueurs = joueurs;
+   
+         }
+
+   
+         @Override
+   
+  
+        public void update(Observable o, Object arg) {
+            if (arg instanceof String){
+            Joueur j=new Joueur((String)arg);
+            joueurs.add(j);
+            
+            
+        }
+        }    
+         public int lancerDes() {
+        return RANDOM.nextInt(6)+1;
     }
+             
+    
 
 }

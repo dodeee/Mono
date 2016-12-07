@@ -8,6 +8,7 @@ import Controleur.*;
 import Model.*;
 import java.util.Scanner;
 import Utilitaire.*;
+import ui.Ihm;
 /**
  *
  * @author dodee
@@ -19,9 +20,14 @@ public class Monopoly {
      */
     public static void main(String[] args) {
          String fileName = "data.txt";
-         Controleur controleur = new Controleur();
+         Ihm ihm = new Ihm();
+         Controleur controleur = new Controleur(ihm);
+         ihm.addObserver(controleur);
+         ihm.affichDep();
+         
+         
          controleur.creerPlateau("/users/info/etu-s2/dodee/COO/Monopoly/src/monopoly/data.txt");
-         controleur.affiche();
+         controleur.affichej();
          
          
          

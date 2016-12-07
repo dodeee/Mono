@@ -7,56 +7,55 @@ package ui;
 import Controleur.*;
 import Model.Joueur;
 import Utilitaire.Utilitaire;
+import java.util.Observable;
 import java.util.Scanner;
 /**
  *
  * @author dodee
  */
-public class Ihm {
+public class Ihm extends Observable{
     
     
-    public Ihm(){
+    public void affichDep(){
         
          Scanner sc = new Scanner(System.in);
 	        	
 	    	
-	    	
-			String choix ="0";
-			do {
+	    	int j = 0;
+			int choix =1;
+			while (j < 6 && choix!=0){
 			System.out.println("\n***************************************************************");
-			System.out.println("                 *  Mes films préférés       *");
+			System.out.println("                 *  Monopoly               *");
 			System.out.println("*****************************************************************");
-			System.out.println("      * 1- Ajouter un joueur                          *");
-			System.out.println("      * 2- Ajouter un film                            *");
-			System.out.println("      * 3- Ajouter un acteur à un film                *");
-			System.out.println("      * 4- Afficher les films                         *");
-			System.out.println("      * 5- Afficher les acteurs                       *");
+			System.out.println("      * 1- Ajouter un joueur                                    *");
+			System.out.println("      * 2- Lancer la partie                                     *");
+			
 			
                         System.out.println("*****************************************************************");
 			System.out.println("      * 0- Quitter                                              *");
 			System.out.println("*****************************************************************");
 			System.out.print("      Votre Choix : ");
 			
-                        choix = sc.nextLine();
-                        switch (choix) {
-				case "1": {
-                                      Joueur j= Utilitaire.demanderJoueur();
-                                        controleur.getJoueurs().add(j);
-                                        controleur.affichej();
+                        choix = sc.nextInt();
+                          
+                        if (choix==1){
+                                    System.out.println("Veuillez entrer un nom de Joueur");
+                                    Scanner s = new Scanner(System.in);
+            
+                                    String nomJ = s.nextLine();
+                                    setChanged();
+                                    notifyObservers(nomJ);
+                                    clearChanged();
+                                    j++;
+                        }
+                       
                                     
-                                    
-                                        break; }
-				case "2": {
-                                      
-                                        break;}
-				
-                                case "0":
-                                        return;
-				default:
-                                       System.out.println("Choix non valide");
-                                       break;
-				} // switch
-                        } while (choix != "0");
+                         
+                        }
+         
         
     }
+    
+    
+  
 }

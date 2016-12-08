@@ -126,8 +126,8 @@ public class Controleur implements Observer{
 	 * @param num
 	 * @param nb
 	 */
-	public int calculNouvPos(int num, int nb) {
-		return num+nb;
+	public int calculNouvPos(int num, int nbA) {
+		return num+nbA;
 	}
 
 	/**

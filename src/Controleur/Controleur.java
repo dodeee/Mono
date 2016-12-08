@@ -14,7 +14,15 @@ public class Controleur implements Observer{
 	private HashMap<Integer,Carreaux> carreaux;
 	private ArrayList<Joueur> joueurs;
         private Ihm ihm;
-        private static final Random RANDOM = new Random();
+        private int valDes;
+
+    public int getValDes() {
+        return valDes;
+    }
+
+    public void setValDes() {
+        this.valDes = Utilitaire.lancerDes();
+    }
 
     public Controleur(Ihm ihm) {
         this.carreaux=new HashMap<>();
@@ -91,12 +99,12 @@ public class Controleur implements Observer{
 	 * @param j
 	 * @param nb
 	 */
-	private void avancer(Joueur j, int nb) {
-            j.getPositionCourante();
-          int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),nb);
+	public void avancer(Joueur j) {
+           this.setValDes();
+          int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
            Carreaux nc=this.carreaux.get(numC);
             j.setPositionCourante(nc);
-	    	
+            // si a = b then recommencer tour
 	}
 
 	/**

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 import Controleur.*;
 import Model.Joueur;
@@ -28,11 +23,10 @@ public class Ihm extends Observable{
 			System.out.println("                 *  Monopoly               *");
 			System.out.println("*****************************************************************");
 			System.out.println("      * 1- Ajouter un joueur                                    *");
-			System.out.println("      * 2- Lancer la partie                                     *");
 			
 			
-                        System.out.println("*****************************************************************");
-			System.out.println("      * 0- Quitter                                              *");
+			
+			System.out.println("      * 0- Lancer la partie                                     *");
 			System.out.println("*****************************************************************");
 			System.out.print("      Votre Choix : ");
 			
@@ -46,15 +40,27 @@ public class Ihm extends Observable{
                                     setChanged();
                                     notifyObservers(nomJ);
                                     clearChanged();
-                                    
                                     j++;
                         }
                        
+                        if (choix==0){
+                            if (j<2){
+                                System.out.println("Il n'y a pas assez de joueurs...");
+                                choix=1;
+                            }
+                        }
                                     
                          
                         }
          
         
+    }
+
+    public void affichSituationJoueur(Joueur j) {
+        
+        System.out.println("*****************************************************************");
+        System.out.println(j.getNomJoueur()+" cash : "+j.getCash());
+        System.out.println(j.getPositionCourante().getNomCarreau()+" au num "+j.getPositionCourante().getNumCarreau());
     }
     
     

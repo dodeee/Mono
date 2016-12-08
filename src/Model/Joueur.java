@@ -91,11 +91,6 @@ public class Joueur {
             return this.getNbPropCeGroupe(g)==g.getNbProprieteGr();
 	}
 
-	/**
-	 * 
-	 * @param g
-         * @return 
-	 */
 	public int getNbPropCeGroupe(Groupe g) {
             int nb=0;
 		for (Propriete p : proprietes){

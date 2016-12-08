@@ -13,17 +13,13 @@ public class ProprieteAConstruire extends Propriete {
 
 
 	public int getLoyerNu() {
-		return super.prix;
+		return super.loyer*2;
 	}
 
 	public Groupe getGroupe() {
 		return Groupe;
 	}
 
-    @Override
-    public int getPrixAchat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public int calculLoyer(int valDes, Joueur jProprio) {

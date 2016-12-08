@@ -9,10 +9,10 @@ public class Groupe {
 
 	public int getNbProprieteGr() {
             int nb=0;
-		for (ProprieteAConstruire p : proprietes ){
-                    nb=nb+1;
-                }
-                return nb;
+            for (ProprieteAConstruire p : proprietes ){
+                nb=nb+1;
+            }
+            return nb;
                     
 	}
 
@@ -24,4 +24,4 @@ public class Groupe {
         this.couleur = couleur;
     }
 
-}//
+}

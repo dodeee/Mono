@@ -12,4 +12,14 @@ public class Compagnie extends Propriete {
 		throw new UnsupportedOperationException();
 	}
 
+    @Override
+    public int getPrixAchat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int calculLoyer(int valDes, Joueur jProprio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }//

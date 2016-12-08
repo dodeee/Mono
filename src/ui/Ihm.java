@@ -46,6 +46,7 @@ public class Ihm extends Observable{
                                     setChanged();
                                     notifyObservers(nomJ);
                                     clearChanged();
+                                    
                                     j++;
                         }
                        

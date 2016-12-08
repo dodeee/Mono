@@ -25,7 +25,7 @@ public abstract class Propriete extends Carreaux {
 
         
 	public void payerLoyer(Joueur jCourant, Joueur jProprio, int valDes){
-            int Loyer=this.calculLoyer(valDes);
+            int Loyer=this.calculLoyer(valDes,jProprio);
             if(Loyer<jCourant.getCash()){
                 jProprio.setCash(Loyer+jProprio.getCash());
                 jCourant.setCash(jCourant.getCash()-Loyer);                
@@ -49,7 +49,7 @@ public abstract class Propriete extends Carreaux {
 	 * 
 	 * @param valDes
 	 */
-	public abstract int calculLoyer(int valDes) ;
+	public abstract int calculLoyer(int valDes, Joueur jProprio) ;
 		
 
 	public void getValeurs() {

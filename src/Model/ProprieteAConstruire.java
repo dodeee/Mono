@@ -25,8 +25,14 @@ public class ProprieteAConstruire extends Propriete {
     }
 
     @Override
-    public int calculLoyer(int valDes) {
-        if 
+    public int calculLoyer(int valDes, Joueur jProprio) {
+        if (jProprio.isGroupeComplet(Groupe)){
+           return 2*this.getLoyerNu();
+        }
+        else {
+            return this.getLoyerNu();
+        }
+            
     }
 
 }

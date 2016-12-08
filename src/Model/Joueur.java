@@ -99,7 +99,7 @@ public class Joueur {
 	public int getNbPropCeGroupe(Groupe g) {
             int nb=0;
 		for (Propriete p : proprietes){
-                if (p.getClass().getName() == "ProprieteAConstruire"){
+                if (p instanceof ProprieteAConstruire){
                     ProprieteAConstruire c = (ProprieteAConstruire) p;
                     if(c.getGroupe()==g)
                         nb=nb+1;

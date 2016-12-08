@@ -61,8 +61,14 @@ public class Joueur {
 	}
 
 	public int getnbGare() {
-		// TODO - implement Joueur.getnbGare
-		throw new UnsupportedOperationException();
+            int nbgare=0;
+            
+            for (Propriete g:proprietes) {
+                if(g instanceof Gare){
+                    nbgare++;
+                }
+            }
+            return nbgare;
 	}
 
 	public Carreaux getPositionCourante() {
@@ -77,9 +83,15 @@ public class Joueur {
 		this.positionCourante = nc;
 	}
 
-	public void getNBCompagnie() {
-		// TODO - implement Joueur.getNBCompagnie
-		throw new UnsupportedOperationException();
+	public int getNBCompagnie() {
+            int nbcompagnie=0;
+            
+            for (Propriete p:proprietes) {
+                if(p instanceof Compagnie){
+                    nbcompagnie++;
+                }
+            }
+            return nbcompagnie;
 	}
 
 	/**

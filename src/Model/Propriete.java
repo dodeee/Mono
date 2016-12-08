@@ -55,9 +55,5 @@ public abstract class Propriete extends Carreaux {
 	public abstract int calculLoyer(int valDes, Joueur jProprio) ;
 		
 
-	public void getValeurs() {
-		// TODO - implement Propriete.getValeurs
-		throw new UnsupportedOperationException();
-	}
 
 }

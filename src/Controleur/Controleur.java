@@ -14,7 +14,16 @@ public class Controleur implements Observer{
 	private HashMap<Integer,Carreaux> carreaux;
 	private ArrayList<Joueur> joueurs;
         private Ihm ihm;
-        private static final Random RANDOM = new Random();
+        private int valDes;
+        private Joueur jCourant;
+
+    public int getValDes() {
+        return valDes;
+    }
+
+    public void setValDes() {
+        this.valDes = Utilitaire.lancerDes();
+    }
 
     public Controleur(Ihm ihm) {
         this.carreaux=new HashMap<>();
@@ -38,8 +47,8 @@ public class Controleur implements Observer{
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
 					
-                                        Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4])) {};
-                                        carreaux.put(i,c);
+                                        //Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4])) {};
+                                        //carreaux.put(i,c);
                                        
 				}
 				else if(caseType.compareTo("G") == 0){
@@ -90,12 +99,12 @@ public class Controleur implements Observer{
 	 * @param j
 	 * @param nb
 	 */
-	private void avancer(Joueur j, int nb) {
-            j.getPositionCourante();
-            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),nb);
-            Carreaux nc=this.carreaux.get(numC);
+	public void avancer(Joueur j) {
+           this.setValDes();
+          int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
+           Carreaux nc=this.carreaux.get(numC);
             j.setPositionCourante(nc);
-	    	
+            // si a = b then recommencer tour
 	}
 
 	/**
@@ -107,7 +116,7 @@ public class Controleur implements Observer{
 	}
 
 	public Joueur getJoueurCourant() {
-
+            return this.jCourant;
 	}
 
 	/**
@@ -115,17 +124,17 @@ public class Controleur implements Observer{
 	 * @param num
 	 * @param nb
 	 */
+
 	public int calculNouvPos(int num, int nb) {
             return num+nb;
-	}
+        }
+	
 
 	/**
 	 * 
 	 * @param b
 	 */
-	public Carreaux getCarreau(int b) {
-            return new Carreaux();
-	}
+	
 
 
         public void affiche(){
@@ -163,9 +172,7 @@ public class Controleur implements Observer{
                 joueurs.add(j);
             }
         }    
-        public int lancerDes() {
-            return RANDOM.nextInt(6)+1;
-        }         
+       
         public void supprimerJoueur(Joueur j){
              this.joueurs.remove(j);
          }

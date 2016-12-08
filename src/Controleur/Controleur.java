@@ -38,7 +38,7 @@ public class Controleur implements Observer{
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
 					
-                                        Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
+                                        Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4])) {};
                                         carreaux.put(i,c);
                                        
 				}
@@ -70,8 +70,7 @@ public class Controleur implements Observer{
 		}
 	}
 	
-	private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException
-	{
+	private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException{
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		
 		BufferedReader reader  = new BufferedReader(new FileReader(filename));
@@ -93,8 +92,8 @@ public class Controleur implements Observer{
 	 */
 	private void avancer(Joueur j, int nb) {
             j.getPositionCourante();
-          int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),nb);
-           Carreaux nc=this.carreaux.get(numC);
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),nb);
+            Carreaux nc=this.carreaux.get(numC);
             j.setPositionCourante(nc);
 	    	
 	}
@@ -104,13 +103,11 @@ public class Controleur implements Observer{
 	 * @param type
 	 */
 	public void miseAJour(TypeCommande type) {
-		// TODO - implement Controleur.miseAJour
-		throw new UnsupportedOperationException();
+
 	}
 
 	public Joueur getJoueurCourant() {
-		// TODO - implement Controleur.getJoueurCourant
-		throw new UnsupportedOperationException();
+
 	}
 
 	/**
@@ -119,7 +116,7 @@ public class Controleur implements Observer{
 	 * @param nb
 	 */
 	public int calculNouvPos(int num, int nb) {
-		return num+nb;
+            return num+nb;
 	}
 
 	/**
@@ -127,22 +124,20 @@ public class Controleur implements Observer{
 	 * @param b
 	 */
 	public Carreaux getCarreau(int b) {
-		// TODO - implement Controleur.getCarreau
-		throw new UnsupportedOperationException();
+            return new Carreaux();
 	}
 
 
         public void affiche(){
-        for (Integer i: carreaux.keySet()){
-            System.out.println(carreaux.get(i).getNumCarreau()+" "+carreaux.get(i).getNomCarreau());
+            for (Integer i: carreaux.keySet()){
+                System.out.println(carreaux.get(i).getNumCarreau()+" "+carreaux.get(i).getNomCarreau());
+            }
         }
-        
+        public void affichej(){
+            for (Joueur c: joueurs){
+                System.out.println("joueurs : "+c.getNomJoueur());
+            }
         }
-         public void affichej(){
-        for (Joueur c: joueurs){
-            System.out.println("joueurs : "+c.getNomJoueur());
-        }
-         }
          
    
         
@@ -161,20 +156,19 @@ public class Controleur implements Observer{
          }
 
    
-         @Override
-   
-  
+        @Override
         public void update(Observable o, Object arg) {
             if (arg instanceof String){
-            Joueur j=new Joueur((String)arg);
-            joueurs.add(j);
-            
-            
-        }
+                Joueur j=new Joueur((String)arg);
+                joueurs.add(j);
+            }
         }    
-         public int lancerDes() {
-        return RANDOM.nextInt(6)+1;
-    }
+        public int lancerDes() {
+            return RANDOM.nextInt(6)+1;
+        }         
+        public void supprimerJoueur(Joueur j){
+             this.joueurs.remove(j);
+         }
              
     
 

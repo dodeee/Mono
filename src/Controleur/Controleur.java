@@ -46,7 +46,7 @@ public class Controleur implements Observer{
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
 					
-                                        Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
+                                        Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5],CouleurPropriete.) );//ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
                                         carreaux.put(i,c);
                                        
 				}

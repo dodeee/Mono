@@ -6,13 +6,11 @@ public class Gare extends Propriete {
         super(prix, numero, nomCarreau);
     }
 
-    @Override
-    public int getPrixAchat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     @Override
-    public int calculLoyer(int valDes, Joueur jProprio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int calculLoyer(int valDes, Joueur jProprio) {        
+        return 25*jProprio.getnbGare();
+        
     }
-}//
+}

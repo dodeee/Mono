@@ -2,6 +2,7 @@ package Utilitaire;
 
 import Model.*;
 import Controleur.*;
+import java.util.Random;
 import java.util.Scanner;
 
 

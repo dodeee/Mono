@@ -77,9 +77,14 @@ public class Joueur {
 		this.positionCourante = nc;
 	}
 
-	public void getNBCompagnie() {
-		// TODO - implement Joueur.getNBCompagnie
-		throw new UnsupportedOperationException();
+	public int getNBCompagnie() {
+            int res=0;
+            for (Propriete c: proprietes) {
+                if (c instanceof Compagnie){
+                    res++;
+                }
+            }
+            return res;
 	}
 
 	/**

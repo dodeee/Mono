@@ -15,7 +15,11 @@ public class Compagnie extends Propriete {
 
     @Override
     public int calculLoyer(int valDes, Joueur jProprio) {
-        
+        if(jProprio.getNBCompagnie()==2){
+            return valDes*10;
+        }else {
+            return valDes*6;
+        }
         
     }
 

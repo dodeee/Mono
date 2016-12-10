@@ -15,6 +15,7 @@ public class Controleur implements Observer{
 	private ArrayList<Joueur> joueurs;
         private Ihm ihm;
         private int valDes;
+        private ArrayList<Groupe> groupes;
 
     public int getValDes() {
         return valDes;
@@ -44,10 +45,24 @@ public class Controleur implements Observer{
 			//TODO: create cases instead of displaying
 			for(int i=0; i<data.size(); ++i){
 				String caseType = data.get(i)[0];
+                                
 				if(caseType.compareTo("P") == 0){
-					
-                                        Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5],CouleurPropriete.) );//ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
-                                        carreaux.put(i,c);
+                                        boolean b=false;
+					for (Groupe g:groupes){
+                                            if (g.getCouleur().name()==data.get(i)[3]){
+                                                Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),g);
+                                                b=true;
+                                                carreaux.put(i,c);
+                                            }
+                                        }
+                                        if (b==false){
+                                            Groupe groupe =new Groupe(CouleurPropriete.valueOf(data.get(i)[3]));
+                                            this.groupes.add(groupe);
+                                            Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),groupe);
+                                            carreaux.put(i,c);
+                                        }
+                                        //ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
+                                        
                                        
 				}
 				else if(caseType.compareTo("G") == 0){
@@ -180,9 +195,7 @@ public class Controleur implements Observer{
             
         }
         }    
-         public int lancerDes() {
-        return RANDOM.nextInt(6)+1;
-    }
+        
              
     
 

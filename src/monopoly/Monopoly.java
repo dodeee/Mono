@@ -27,8 +27,8 @@ public class Monopoly {
          
          
          controleur.creerPlateau("/users/info/etu-s2/dodee/COO/Monopoly/src/monopoly/data.txt");
-               controleur.affichec();
-         controleur.setPositionDep();
+         //      controleur.affichec();
+        // controleur.setPositionDep();
          controleur.affichej();
          controleur.avancer(controleur.getJoueurs().get(1));
          controleur.affichej();

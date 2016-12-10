@@ -6,6 +6,9 @@ public class Groupe {
 
 	private ArrayList<ProprieteAConstruire> proprietes;
 	private CouleurPropriete couleur;
+        public Groupe (CouleurPropriete couleur){
+            this.couleur=couleur;
+        }
 
 	public int getNbProprieteGr() {
             int nb=0;
@@ -22,6 +25,9 @@ public class Groupe {
 
     public void setCouleur(CouleurPropriete couleur) {
         this.couleur = couleur;
+    }
+    public void addPropriete(ProprieteAConstruire p){
+        this.proprietes.add(p);
     }
 
 }

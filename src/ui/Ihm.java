@@ -85,6 +85,9 @@ public class Ihm extends Observable{
         notifyObservers(TypeCommande.PAYER_LOYER);
         clearChanged();
     }
+    public void finPartie(Joueur j){
+        System.out.println(j.getNomJoueur()+" a gagné.");
+    }
     
 
 }

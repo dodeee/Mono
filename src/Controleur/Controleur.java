@@ -36,11 +36,13 @@ public class Controleur implements Observer{
         
     }
     public void jouer(){
+        this.ihm.affichDep();
         while(this.joueurs.size()!=1){
             for (Joueur j : joueurs) {
                 this.jouerTour(j);
             }        
         }
+        this.ihm.finPartie(this.joueurs.get(0));
     }
     public void jouerTour(Joueur j){
         this.jCourant=j;

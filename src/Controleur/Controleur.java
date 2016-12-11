@@ -17,28 +17,41 @@ public class Controleur implements Observer{
         private int valDes;
         private ArrayList<Groupe> groupes;
         private Joueur jCourant;
-        private Joueur jProprio;
+
     public int getValDes() {
         return valDes;
     }
 
     public void setValDes() {
-       // this.valDes=Utilitaire.lancerDes();
-       this.valDes=9;
+        this.valDes = Utilitaire.lancerDes();
     }
 
-    public Controleur(Ihm ihm) {
+    public Controleur() {
         this.carreaux=new HashMap<>();
         this.joueurs=new ArrayList<>();
-        this.ihm=ihm;
-        groupes=new ArrayList<>();
+        this.ihm= new Ihm();
+        this.groupes=new ArrayList<>();
+        ihm.addObserver(this);
+        
        
         
     }
-    
+    public void jouer(){
+        
+        this.ihm.affichDep();
+        this.setPositionDep();
+        while(this.joueurs.size()!=1){
+            for (Joueur j : joueurs) {
+                System.out.println("JAJA");
+                this.jouerTour(j);
+            }        
+        }
+        this.ihm.finPartie(this.joueurs.get(0));
+    }
     public void jouerTour(Joueur j){
-        this.jCourant = j;
-        avancer(jCourant);
+        this.setValDes();
+        this.jCourant=j;
+        avancer(j);
         jCourant.getPositionCourante().getNumCarreau();
         System.out.println("la");
         int i = jCourant.getPositionCourante().getNumCarreau();
@@ -48,31 +61,30 @@ public class Controleur implements Observer{
             
         }
         else {
-        
-             Propriete p=(Propriete)(carreaux.get(i));
-        
-             if(p.getProprietaire()!=null){
-             jProprio=p.getProprietaire();
-             if(jProprio!=jCourant){
-            
-                 System.out.println("Location");
-             p.payerLoyer(jCourant, jProprio, valDes);
+            if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=null){
+                if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=jCourant){           
+                    this.ihm.affichePayerLoyer();   
+                }
+            }
+            else{
+                this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
+            }      
         }
+        
+        if(this.jCourant.getCash()==0){
+            this.joueurs.remove(jCourant);
+            for (Propriete p : jCourant.getProprietes()) {
+                p.setProprietaire(null);
+            }
         }
-             else{
-                 System.out.println("Acheter");  
-                 p.acheterPropriete(jCourant);
-                
-             }
-       
-          
-    }
     }
     
     
         
     public void setPositionDep(){
+        System.out.println("allloooo");
         for(Joueur j:joueurs){
+            System.out.println("ole");
             j.setPositionCourante(carreaux.get(1));
         }
     }
@@ -160,10 +172,11 @@ public class Controleur implements Observer{
 	 * @param nb
 	 */
 	public void avancer(Joueur j) {
-           this.setValDes();
-          int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
-           Carreaux nc=this.carreaux.get(numC);
-            j.setPositionCourante(nc);
+            System.out.println(j.getNomJoueur());
+            this.setValDes();
+            System.out.println(valDes);
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
+            j.setPositionCourante(this.carreaux.get(numC));
             // si a = b then recommencer tour
 	}
 
@@ -207,10 +220,10 @@ public class Controleur implements Observer{
         
         }
          public void affichej(){
-        for (Joueur c: joueurs){
-            System.out.println("joueurs : "+c.getNomJoueur()+c.getPositionCourante().getNumCarreau());
+            for (Joueur c: joueurs){
+                System.out.println("joueurs : "+c.getNomJoueur()+c.getPositionCourante().getNumCarreau());
+            }
         }
-         }
          
    
         
@@ -239,6 +252,10 @@ public class Controleur implements Observer{
             }
             else if(arg == TypeCommande.LANCER_PARTIE){
                 
+            }else if(arg == TypeCommande.ACHETER_CASE){               
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant);
+            }else if(arg == TypeCommande.PAYER_LOYER){
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes);
             }
         }    
         
@@ -246,3 +263,6 @@ public class Controleur implements Observer{
     
 
 }
+
+          
+    

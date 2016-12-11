@@ -12,6 +12,7 @@ package Utilitaire;
 public enum TypeCommande {
     LANCER_PARTIE,
     ACHETER_CASE,
-    JOUEUR_SUIVANT;
+    JOUEUR_SUIVANT,
+    PAYER_LOYER;
 }
 //

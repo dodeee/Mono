@@ -70,12 +70,23 @@ public class Ihm extends Observable{
             clearChanged();
         }
     }
+    
 
     public void affichSituationJoueur(Joueur j) {
         
         System.out.println("*****************************************************************");
         System.out.println(j.getNomJoueur()+" cash : "+j.getCash());
         System.out.println(j.getPositionCourante().getNomCarreau()+" au num "+j.getPositionCourante().getNumCarreau());
+    }
+    public void affichePayerLoyer(){
+        System.out.println("*****************************************************************");
+        System.out.println("**                              payement de loyer          ******");
+        setChanged();
+        notifyObservers(TypeCommande.PAYER_LOYER);
+        clearChanged();
+    }
+    public void finPartie(Joueur j){
+        System.out.println(j.getNomJoueur()+" a gagné.");
     }
     
 

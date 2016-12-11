@@ -110,4 +110,9 @@ public class Joueur {
                 return nb;    
 	}
 
+    public ArrayList<Propriete> getProprietes() {
+        return proprietes;
+    }
+        
+
 }

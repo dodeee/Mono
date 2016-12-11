@@ -17,7 +17,7 @@ public class Controleur implements Observer{
         private int valDes;
         private ArrayList<Groupe> groupes;
         private Joueur jCourant;
-        private Joueur jProprio;
+
     public int getValDes() {
         return valDes;
     }
@@ -26,17 +26,24 @@ public class Controleur implements Observer{
         this.valDes = Utilitaire.lancerDes();
     }
 
-    public Controleur(Ihm ihm) {
+    public Controleur() {
         this.carreaux=new HashMap<>();
         this.joueurs=new ArrayList<>();
-        this.ihm=ihm;
+        this.ihm= new Ihm();
         this.groupes=new ArrayList<>();
+        ihm.addObserver(this);
        
         
     }
-    
+    public void jouer(){
+        while(this.joueurs.size()!=1){
+            for (Joueur j : joueurs) {
+                this.jouerTour(j);
+            }        
+        }
+    }
     public void jouerTour(Joueur j){
-        this.jCourant = j;
+        this.jCourant=j;
         avancer(jCourant);
         jCourant.getPositionCourante().getNumCarreau();
         System.out.println("la");
@@ -47,22 +54,22 @@ public class Controleur implements Observer{
             
         }
         else {
-            
-        
-            Propriete p=(Propriete)(carreaux.get(i));
-        
-            if(p.getProprietaire()!=null){
-                if(p.getProprietaire()!=jCourant){           
-                    System.out.println("Paye le loyer");
-                    p.payerLoyer(jCourant, p.getProprietaire(), valDes);
+            if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=null){
+                if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=jCourant){           
+                    this.ihm.affichePayerLoyer();   
                 }
             }
             else{
                 this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
+            }      
+        }
+        
+        if(this.jCourant.getCash()==0){
+            this.joueurs.remove(jCourant);
+            for (Propriete p : jCourant.getProprietes()) {
+                p.setProprietaire(null);
             }
-       
-          
-    }
+        }
     }
     
     
@@ -203,10 +210,10 @@ public class Controleur implements Observer{
         
         }
          public void affichej(){
-        for (Joueur c: joueurs){
-            System.out.println("joueurs : "+c.getNomJoueur()+c.getPositionCourante().getNumCarreau());
+            for (Joueur c: joueurs){
+                System.out.println("joueurs : "+c.getNomJoueur()+c.getPositionCourante().getNumCarreau());
+            }
         }
-         }
          
    
         
@@ -235,8 +242,10 @@ public class Controleur implements Observer{
             }
             else if(arg == TypeCommande.LANCER_PARTIE){
                 
-            }else if(arg == TypeCommande.ACHETER_CASE){
-                
+            }else if(arg == TypeCommande.ACHETER_CASE){               
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant);
+            }else if(arg == TypeCommande.PAYER_LOYER){
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes);
             }
         }    
         

@@ -249,6 +249,7 @@ public class Controleur implements Observer{
             if (arg instanceof String){
                 Joueur j=new Joueur((String)arg);
                 joueurs.add(j);
+                j.setPositionCourante(this.carreaux.get(0));
             }
             else if(arg == TypeCommande.LANCER_PARTIE){
                 

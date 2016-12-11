@@ -23,8 +23,8 @@ public class Controleur implements Observer{
     }
 
     public void setValDes() {
-    //    this.valDes = Utilitaire.lancerDes();
-    this.valDes=12;
+        int res=Utilitaire.lancerDes();
+        this.valDes = res;
     }
 
     public Controleur(Ihm ihm) {

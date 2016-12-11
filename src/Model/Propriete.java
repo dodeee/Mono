@@ -20,9 +20,14 @@ public abstract class Propriete extends Carreaux {
 	 * @param jCourant
 	 */
 	public void acheterPropriete(Joueur jCourant) {
-            jCourant.setCash(jCourant.getCash()-this.prix);
-            this.setProprietaire(jCourant);
-            jCourant.addPropriete(this);            
+            if (proprietaire==null){
+                jCourant.setCash(jCourant.getCash()-this.prix);
+                this.setProprietaire(jCourant);
+                jCourant.addPropriete(this);                   
+            }
+            else{
+                System.out.println("Vous ne pouvez pas acheter cette propriété.");
+            }
 	}
 
         

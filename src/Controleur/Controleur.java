@@ -23,8 +23,8 @@ public class Controleur implements Observer{
     }
 
     public void setValDes() {
-        int res=Utilitaire.lancerDes();
-        this.valDes = Utilitaire;
+       // this.valDes=Utilitaire.lancerDes();
+       this.valDes=9;
     }
 
     public Controleur(Ihm ihm) {
@@ -48,7 +48,6 @@ public class Controleur implements Observer{
             
         }
         else {
-            
         
              Propriete p=(Propriete)(carreaux.get(i));
         
@@ -63,6 +62,7 @@ public class Controleur implements Observer{
              else{
                  System.out.println("Acheter");  
                  p.acheterPropriete(jCourant);
+                
              }
        
           

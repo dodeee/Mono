@@ -10,6 +10,6 @@ package Utilitaire;
  * @author dodee
  */
 public enum TypeCommande {
-    
+    LANCER_PARTIE;
 }
 //

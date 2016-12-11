@@ -1,6 +1,7 @@
 package ui;
 import Controleur.*;
 import Model.Joueur;
+import Utilitaire.TypeCommande;
 import Utilitaire.Utilitaire;
 import java.util.Observable;
 import java.util.Scanner;
@@ -34,19 +35,21 @@ public class Ihm extends Observable{
                           
                         if (choix==1){
                                     System.out.println("Veuillez entrer un nom de Joueur");
-                                    Scanner s = new Scanner(System.in);
-            
-                                    String nomJ = s.nextLine();
+                                    String nomJ = sc.nextLine();
                                     setChanged();
                                     notifyObservers(nomJ);
                                     clearChanged();
                                     j++;
-                        }
-                       
+                        }                      
                         if (choix==0){
                             if (j<2){
                                 System.out.println("Il n'y a pas assez de joueurs...");
                                 choix=1;
+                            }
+                            else{
+                                setChanged();
+                                notifyObservers(TypeCommande.LANCER_PARTIE);
+                                clearChanged();
                             }
                         }
                                     

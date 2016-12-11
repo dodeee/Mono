@@ -30,13 +30,16 @@ public class Monopoly {
               controleur.affichec();
          controleur.setPositionDep();
          controleur.affichej();
-         controleur.avancer(controleur.getJoueurs().get(1));
+         controleur.jouerTour(controleur.getJoueurs().get(1));
          controleur.affichej();
    
-                         
+        
+         
+         
         ihm.affichSituationJoueur(controleur.getJoueurs().get(0));
         ihm.affichSituationJoueur(controleur.getJoueurs().get(1));
-         
+        
+        
          
          
          

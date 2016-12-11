@@ -16,7 +16,8 @@ public class Controleur implements Observer{
         private Ihm ihm;
         private int valDes;
         private ArrayList<Groupe> groupes;
-
+        private Joueur jCourant;
+        private Joueur jProprio;
     public int getValDes() {
         return valDes;
     }
@@ -30,8 +31,32 @@ public class Controleur implements Observer{
         this.joueurs=new ArrayList<>();
         this.ihm=ihm;
         groupes=new ArrayList<>();
+       
         
     }
+    
+    public void jouerTour(Joueur j){
+        this.jCourant = j;
+        avancer(jCourant);
+        jCourant.getPositionCourante().getNumCarreau();
+        System.out.println("la");
+        int i = jCourant.getPositionCourante().getNumCarreau();
+        System.out.println("lala");
+        Propriete p=(Propriete)(carreaux.get(i));
+        
+        if(p.getProprietaire()!=null){
+            jProprio=p.getProprietaire();
+            if(jProprio!=jCourant){
+            
+        p.payerLoyer(jCourant, jProprio, valDes);
+        }
+        }
+       
+          
+    }
+    
+    
+    
         
     public void setPositionDep(){
         for(Joueur j:joueurs){

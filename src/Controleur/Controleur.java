@@ -23,15 +23,14 @@ public class Controleur implements Observer{
     }
 
     public void setValDes() {
-        int res=Utilitaire.lancerDes();
-        this.valDes = Utilitaire;
+        this.valDes = Utilitaire.lancerDes();
     }
 
     public Controleur(Ihm ihm) {
         this.carreaux=new HashMap<>();
         this.joueurs=new ArrayList<>();
         this.ihm=ihm;
-        groupes=new ArrayList<>();
+        this.groupes=new ArrayList<>();
        
         
     }
@@ -50,20 +49,17 @@ public class Controleur implements Observer{
         else {
             
         
-             Propriete p=(Propriete)(carreaux.get(i));
+            Propriete p=(Propriete)(carreaux.get(i));
         
-             if(p.getProprietaire()!=null){
-             jProprio=p.getProprietaire();
-             if(jProprio!=jCourant){
-            
-                 System.out.println("Location");
-             p.payerLoyer(jCourant, jProprio, valDes);
-        }
-        }
-             else{
-                 System.out.println("Acheter");  
-                 p.acheterPropriete(jCourant);
-             }
+            if(p.getProprietaire()!=null){
+                if(p.getProprietaire()!=jCourant){           
+                    System.out.println("Paye le loyer");
+                    p.payerLoyer(jCourant, p.getProprietaire(), valDes);
+                }
+            }
+            else{
+                this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
+            }
        
           
     }
@@ -238,6 +234,8 @@ public class Controleur implements Observer{
                 joueurs.add(j);
             }
             else if(arg == TypeCommande.LANCER_PARTIE){
+                
+            }else if(arg == TypeCommande.ACHETER_CASE){
                 
             }
         }    

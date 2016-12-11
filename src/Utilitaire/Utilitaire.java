@@ -8,14 +8,11 @@ import java.util.Scanner;
 
 
 public class Utilitaire {
-	
-	  private static final Random RANDOM = new Random();
-          private static final int[] tab={RANDOM.nextInt(6)+1,RANDOM.nextInt(6)+1};
-	   
-          public static  int lancerDes(){
-            return tab[0]+tab[1];
-          }
-          public static boolean Desegaux(){
-              return tab[0]==tab[1];
-          }
+    private static final Random RAMDOM=new Random();
+    public static int lancesDes(){
+        return RAMDOM.nextInt(6)+1;
+    }
+    public static boolean desEgaux(int a,int b){
+        return a==b;
+    }
 }

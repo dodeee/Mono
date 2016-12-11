@@ -8,22 +8,23 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import ui.Ihm;
-public class Controleur implements Observer{
-      
-     
+public class Controleur implements Observer{	   
+
 	private HashMap<Integer,Carreaux> carreaux;
 	private ArrayList<Joueur> joueurs;
         private Ihm ihm;
         private int valDes;
         private ArrayList<Groupe> groupes;
         private Joueur jCourant;
-
-    public int getValDes() {
-        return valDes;
-    }
+        private int des[]={0,0};
+        private ArrayList<Joueur> jasupp;
 
     public void setValDes() {
-        this.valDes = Utilitaire.lancerDes();
+        this.des[0]=Utilitaire.lancesDes();
+        System.out.println("Des A : "+des[0]);
+        this.des[1]=Utilitaire.lancesDes();
+        System.out.println("Des B : "+des[1]);
+        this.valDes=des[0]+des[1];
     }
 
     public Controleur() {
@@ -31,6 +32,7 @@ public class Controleur implements Observer{
         this.joueurs=new ArrayList<>();
         this.ihm= new Ihm();
         this.groupes=new ArrayList<>();
+        this.jasupp=new ArrayList<>();
         ihm.addObserver(this);
         
        
@@ -41,41 +43,63 @@ public class Controleur implements Observer{
         this.ihm.affichDep();
         this.setPositionDep();
         while(this.joueurs.size()!=1){
+            System.out.println("La ça craint");
+            
+            
             for (Joueur j : joueurs) {
-                System.out.println("JAJA");
+                System.out.println("cash // "+j.getCash());
                 this.jouerTour(j);
-            }        
-        }
+            }
+            for (Joueur j : jasupp) {
+                this.joueurs.remove(j);
+            System.out.println(j.getNomJoueur()+" c fait dégage");
+                
+            }
+            this.jasupp.clear();
+            this.affichej();
+            }
+        
         this.ihm.finPartie(this.joueurs.get(0));
     }
     public void jouerTour(Joueur j){
-        this.setValDes();
         this.jCourant=j;
-        avancer(j);
-        jCourant.getPositionCourante().getNumCarreau();
-        System.out.println("la");
-        int i = jCourant.getPositionCourante().getNumCarreau();
-        System.out.println("lala");
-        
-        if (carreaux.get(i) instanceof AutreCarreau){
+        boolean rejouer = true;
+        while(rejouer && j.getCash()!=0){
+            avancer(j);
+            if (!Utilitaire.desEgaux(des[0], des[1])){
+                rejouer=false;
+                
+            }else {
+                     System.out.println("DOUBLE");
+            }
             
-        }
-        else {
-            if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=null){
-                if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=jCourant){           
-                    this.ihm.affichePayerLoyer();   
+            System.out.println("case :: "+this.jCourant.getPositionCourante().getNumCarreau()+"       "+this.jCourant.getPositionCourante().getNomCarreau());
+            System.out.println("la");
+            int i = jCourant.getPositionCourante().getNumCarreau();
+            System.out.println("lala");
+
+            if (carreaux.get(i) instanceof AutreCarreau){
+                System.out.println("**** Le carreau sur lequel vous êtes tombé est un carreaux incategorisé. ****");
+            }
+            else {
+                if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=null){
+                    if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=jCourant){           
+                        this.ihm.affichePayerLoyer();   
+                    }
                 }
+                else{
+                    this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
+                }      
             }
-            else{
-                this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
-            }      
         }
-        
         if(this.jCourant.getCash()==0){
-            this.joueurs.remove(jCourant);
             for (Propriete p : jCourant.getProprietes()) {
+               System.out.println("j'ai une propriete en -");
                 p.setProprietaire(null);
-            }
+           } 
+            this.jasupp.add(jCourant);
+            
+            
         }
     }
     
@@ -88,7 +112,7 @@ public class Controleur implements Observer{
             j.setPositionCourante(carreaux.get(1));
         }
     }
-        
+
     public void creerPlateau(String dataFilename){
 		buildGamePlateau(dataFilename);
 	}
@@ -182,35 +206,18 @@ public class Controleur implements Observer{
 
 	/**
 	 * 
-	 * @param type
-	 */
-	public void miseAJour(TypeCommande type) {
-		// TODO - implement Controleur.miseAJour
-		throw new UnsupportedOperationException();
-	}
-
-	public Joueur getJoueurCourant() {
-		// TODO - implement Controleur.getJoueurCourant
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
 	 * @param num
 	 * @param nb
 	 */
 	public int calculNouvPos(int num, int nbA) {
-		return num+nbA;
-	}
+            if(num+nbA<=40){ 
+                return num+nbA;
+            }
+            else{
+                return ((num+nbA)%41)+1;
+            }
+        }
 
-	/**
-	 * 
-	 * @param b
-	 */
-	public Carreaux getCarreau(int b) {
-		// TODO - implement Controleur.getCarreau
-		throw new UnsupportedOperationException();
-	}
 
 
         public void affichec(){
@@ -221,7 +228,7 @@ public class Controleur implements Observer{
         }
          public void affichej(){
             for (Joueur c: joueurs){
-                System.out.println("joueurs : "+c.getNomJoueur()+c.getPositionCourante().getNumCarreau());
+                System.out.println("joueurs : "+c.getNomJoueur()+"  "+c.getPositionCourante().getNumCarreau()+" indice : "+joueurs.indexOf(c));
             }
         }
          
@@ -248,15 +255,16 @@ public class Controleur implements Observer{
         public void update(Observable o, Object arg) {
             if (arg instanceof String){
                 Joueur j=new Joueur((String)arg);
-                joueurs.add(j);
+                this.joueurs.add(j);
                 j.setPositionCourante(this.carreaux.get(0));
             }
             else if(arg == TypeCommande.LANCER_PARTIE){
-                
+                this.jCourant=this.joueurs.get(0);
             }else if(arg == TypeCommande.ACHETER_CASE){               
                 ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant);
             }else if(arg == TypeCommande.PAYER_LOYER){
                 ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes);
+            }else {
             }
         }    
         

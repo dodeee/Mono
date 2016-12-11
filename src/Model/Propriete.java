@@ -20,14 +20,15 @@ public abstract class Propriete extends Carreaux {
 	 * @param jCourant
 	 */
 	public void acheterPropriete(Joueur jCourant) {
-            if (proprietaire==null){
-                jCourant.setCash(jCourant.getCash()-this.prix);
-                this.setProprietaire(jCourant);
-                jCourant.addPropriete(this);                   
-            }
-            else{
-                System.out.println("Vous ne pouvez pas acheter cette propriété.");
-            }
+            //if (proprietaire==null){
+                if (jCourant.getCash()>this.prix){
+                    jCourant.setCash(jCourant.getCash()-this.prix);
+                    this.setProprietaire(jCourant);
+                    jCourant.addPropriete(this);
+                }else{
+                    System.out.println("Vous n'avez pas asser d'argent.");
+                }                                   
+            //}
 	}
 
         
@@ -37,7 +38,9 @@ public abstract class Propriete extends Carreaux {
                 jProprio.setCash(Loyer+jProprio.getCash());
                 jCourant.setCash(jCourant.getCash()-Loyer);                
             }else {
-                
+                jProprio.setCash(jProprio.getCash()+jCourant.getCash());
+                jCourant.setCash(0);
+                System.out.println("J'ai plus de thune");
             }
         }
 
@@ -59,11 +62,6 @@ public abstract class Propriete extends Carreaux {
 	 * @param valDes
 	 */
 	public abstract int calculLoyer(int valDes, Joueur jProprio) ;
-		
 
-	public void getValeurs() {
-		// TODO - implement Propriete.getValeurs
-		throw new UnsupportedOperationException();
-	}
 
 }

@@ -195,11 +195,12 @@ public class Controleur implements Observer{
   
         public void update(Observable o, Object arg) {
             if (arg instanceof String){
-            Joueur j=new Joueur((String)arg);
-            joueurs.add(j);
-            
-            
-        }
+                Joueur j=new Joueur((String)arg);
+                joueurs.add(j);
+            }
+            else if(arg == TypeCommande.LANCER_PARTIE){
+                
+            }
         }    
         
              

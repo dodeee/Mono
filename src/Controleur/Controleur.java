@@ -29,9 +29,15 @@ public class Controleur implements Observer{
         this.carreaux=new HashMap<>();
         this.joueurs=new ArrayList<>();
         this.ihm=ihm;
+        groupes=new ArrayList<>();
         
     }
         
+    public void setPositionDep(){
+        for(Joueur j:joueurs){
+            j.setPositionCourante(carreaux.get(0));
+        }
+    }
         
     public void creerPlateau(String dataFilename){
 		buildGamePlateau(dataFilename);
@@ -155,7 +161,7 @@ public class Controleur implements Observer{
 	}
 
 
-        public void affiche(){
+        public void affichec(){
         for (Integer i: carreaux.keySet()){
             System.out.println(carreaux.get(i).getNumCarreau()+" "+carreaux.get(i).getNomCarreau());
         }
@@ -163,7 +169,7 @@ public class Controleur implements Observer{
         }
          public void affichej(){
         for (Joueur c: joueurs){
-            System.out.println("joueurs : "+c.getNomJoueur());
+            System.out.println("joueurs : "+c.getNomJoueur()+c.getPositionCourante().getNumCarreau());
         }
          }
          

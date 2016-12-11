@@ -11,6 +11,7 @@ public class Joueur {
 
     public Joueur(String nomJoueur) {
         this.nomJoueur = nomJoueur;
+        this.proprietes = new ArrayList<>();
     }
 
 	/**

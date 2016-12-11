@@ -23,7 +23,8 @@ public class Controleur implements Observer{
     }
 
     public void setValDes() {
-        this.valDes = Utilitaire.lancerDes();
+    //    this.valDes = Utilitaire.lancerDes();
+    this.valDes=12;
     }
 
     public Controleur(Ihm ihm) {
@@ -42,25 +43,37 @@ public class Controleur implements Observer{
         System.out.println("la");
         int i = jCourant.getPositionCourante().getNumCarreau();
         System.out.println("lala");
-        Propriete p=(Propriete)(carreaux.get(i));
         
-        if(p.getProprietaire()!=null){
-            jProprio=p.getProprietaire();
-            if(jProprio!=jCourant){
+        if (carreaux.get(i) instanceof AutreCarreau){
             
-        p.payerLoyer(jCourant, jProprio, valDes);
+        }
+        else {
+            
+        
+             Propriete p=(Propriete)(carreaux.get(i));
+        
+             if(p.getProprietaire()!=null){
+             jProprio=p.getProprietaire();
+             if(jProprio!=jCourant){
+            
+                 System.out.println("Location");
+             p.payerLoyer(jCourant, jProprio, valDes);
         }
         }
+             else{
+                 System.out.println("Acheter");  
+                 p.acheterPropriete(jCourant);
+             }
        
           
     }
-    
+    }
     
     
         
     public void setPositionDep(){
         for(Joueur j:joueurs){
-            j.setPositionCourante(carreaux.get(0));
+            j.setPositionCourante(carreaux.get(1));
         }
     }
         
@@ -83,14 +96,14 @@ public class Controleur implements Observer{
                                             if (g.getCouleur().name()==data.get(i)[3]){
                                                 Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),g);
                                                 b=true;
-                                                carreaux.put(i,c);
+                                                carreaux.put(i+1,c);
                                             }
                                         }
                                         if (b==false){
                                             Groupe groupe =new Groupe(CouleurPropriete.valueOf(data.get(i)[3]));
                                             this.groupes.add(groupe);
                                             Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),groupe);
-                                            carreaux.put(i,c);
+                                            carreaux.put(i+1,c);
                                         }
                                         //ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
                                         
@@ -99,17 +112,18 @@ public class Controleur implements Observer{
 				else if(caseType.compareTo("G") == 0){
 					
                                         Carreaux c = new Gare(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
-                                        carreaux.put(i,c);
+                                        carreaux.put(i+1,c);
 				}
 				else if(caseType.compareTo("C") == 0){
 					
                                         Carreaux c = new Compagnie(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
-                                        carreaux.put(i,c);
+                                        carreaux.put(i+1,c);
 				}
 				else if(caseType.compareTo("AU") == 0){
 					
                                         Carreaux c = new AutreCarreau(Integer.parseInt(data.get(i)[1]),data.get(i)[2]);
-                                        carreaux.put(i,c);
+                                        carreaux.put(i+1,c);
+                                        
 				}
 				else
 					System.err.println("[buildGamePleateau()] : Invalid Data type");

@@ -19,27 +19,16 @@ public class Monopoly {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         String fileName = "data.txt";
-         Ihm ihm = new Ihm();
-         Controleur controleur = new Controleur(ihm);
-         ihm.addObserver(controleur);
-         ihm.affichDep();
+        String fileName = "data.txt";
+        Ihm ihm = new Ihm();
+        Controleur controleur = new Controleur(ihm);
+        ihm.addObserver(controleur);
+        controleur.creerPlateau("C:\\Users\\dodee\\OneDrive\\Documents\\NetBeansProjects\\Monop\\src\\monopoly\\data.txt");
+        ihm.affichDep();
          
          
-         controleur.creerPlateau("C:\\Users\\dodee\\OneDrive\\Documents\\NetBeansProjects\\Monop\\src\\monopoly\\data.txt");
-              controleur.affichec();
-         controleur.setPositionDep();
-         controleur.affichej();
-         controleur.avancer(controleur.getJoueurs().get(1));
-         controleur.affichej();
-   
-                         
-        ihm.affichSituationJoueur(controleur.getJoueurs().get(0));
-        ihm.affichSituationJoueur(controleur.getJoueurs().get(1));
-         
-         
-         
-         
+        
+
     }
     
     

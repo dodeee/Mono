@@ -39,15 +39,15 @@ public class Controleur implements Observer{
         
     }
     public void jouer(){
-        
-        Joueur j1test =new Joueur("Ken");
-        j1test.addPropriete((Propriete)this.carreaux.get(2));
-        j1test.addPropriete((Propriete)this.carreaux.get(4));
-        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
-        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
-        Joueur j2test =new Joueur("Barbie");
-        this.joueurs.add(j1test);
-        this.joueurs.add(j2test);
+      // POUR TEST GROUPE : barbie doit payer 8  
+//        Joueur j1test =new Joueur("Ken");
+//        j1test.addPropriete((Propriete)this.carreaux.get(2));
+//        j1test.addPropriete((Propriete)this.carreaux.get(4));
+//        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
+//        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
+//        Joueur j2test =new Joueur("Barbie");
+//        this.joueurs.add(j1test);
+//        this.joueurs.add(j2test);
         
         this.ihm.affichDep();
         this.setPositionDep();
@@ -202,7 +202,7 @@ public class Controleur implements Observer{
             System.out.println(j.getNomJoueur());
             this.setValDes();
             System.out.println(valDes);
-            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),3);
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes); // POUR TEST GROUPE : remplacer valDes par 3
             j.setPositionCourante(this.carreaux.get(numC));
 	}
 

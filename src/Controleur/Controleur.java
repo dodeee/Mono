@@ -195,11 +195,11 @@ public class Controleur implements Observer{
             this.ihm.afficheAvLanceDes(j);
             this.setValDes();
  
-            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),12);
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
              // POUR TEST GROUPE : mettre 3 à la place de valDes
              // POUR TEST GARE : mettre 5 à la place de valDes
-             // POUR TEST COMPAGNIE : mettre 12 à la place de valDes et
-              System.out.println("valDes :"+valDes); 
+             // POUR TEST COMPAGNIE : mettre 12 à la place de valDes 
+             //                       System.out.println("valDes :"+valDes); 
             j.setPositionCourante(this.carreaux.get(numC));
 	}
 

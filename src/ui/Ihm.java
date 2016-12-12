@@ -1,8 +1,13 @@
 package ui;
 import Controleur.*;
+import Model.AutreCarreau;
+import Model.Carreaux;
 import Model.Joueur;
+import Model.Propriete;
 import Utilitaire.TypeCommande;
 import Utilitaire.Utilitaire;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Scanner;
 /**
@@ -58,7 +63,7 @@ public class Ihm extends Observable{
         System.out.println("      * 1- Acheter la case                                      *");
         System.out.println("      * 0- Passer son tour                                      *");
         System.out.println("*****************************************************************");
-        System.out.print("      Votre Choix : "); 
+        System.out.print("        * Votre Choix : "); 
         int choix = sc.nextInt();
         if (choix==1){
             setChanged();
@@ -71,17 +76,72 @@ public class Ihm extends Observable{
             clearChanged();
         }
     }
-    
+    public void afficheAvLanceDes(Joueur j){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Appuyer sur entrer pour lancer les dès :");
+        s.nextLine();
+    }
+    public void afficheAutreCarreau(AutreCarreau c){
+        System.out.println("Vous êtes tombé sur : "+c.getNomCarreau()+" qui n'est pas une propriété.");
+    }
+    public void afficheJoueurAPerdu(Joueur j){
+        System.out.println("   Le joueur "+j.getNomJoueur()+" a perdu.");
+    }
+    public void afficheDouble(){
+        System.out.println("   C'est un double ! Tu auras un tour supplementaire. ;) ");
+    }
 
     public void affichSituationJoueur(Joueur j) {
         
         System.out.println("*****************************************************************");
-        System.out.println(j.getNomJoueur()+" cash : "+j.getCash());
-        System.out.println(j.getPositionCourante().getNomCarreau()+" au num "+j.getPositionCourante().getNumCarreau());
+        System.out.println("       "+j.getNomJoueur());
+        System.out.println("       cash : "+j.getCash());
+        System.out.println("       "+j.getPositionCourante().getNomCarreau());
+        System.out.println("       au numero : "+j.getPositionCourante().getNumCarreau());
+        System.out.println("*****************************************************************");
+        
+    }
+    public void afficheAuTourDuJoueur(Joueur j) {
+        
+        System.out.println("*****************************************************************");
+        System.out.println("       Au tour de "+j.getNomJoueur()+"   cash : "+j.getCash());
+        System.out.println("       "+j.getPositionCourante().getNomCarreau());
+        System.out.println("       au numero : "+j.getPositionCourante().getNumCarreau());
+        System.out.println("*****************************************************************");
+        
+    }
+    public void affichec(HashMap<Integer,Carreaux> carreaux){
+        for (Integer i: carreaux.keySet()){
+            System.out.println(carreaux.get(i).getNumCarreau()+" "+carreaux.get(i).getNomCarreau());
+        }
+    }
+    public void afficheFinTourDesJoueurs(ArrayList<Joueur> joueurs){
+        for (Joueur j: joueurs){
+            System.out.println("     Joueur : "+j.getNomJoueur()+"    Case numéro : "+j.getPositionCourante().getNumCarreau());
+            System.out.println("     Ses Propriétés : ");
+            for(Propriete p : j.getProprietes()){
+                System.out.println("                         "+p.getNumCarreau()+". "+p.getNomCarreau());
+            }
+            System.out.println("");
+        }
+    }
+    public void afficheCaseCouranteJoueur(Joueur jCourant){
+        System.out.println("case : "+jCourant.getPositionCourante().getNumCarreau()+"       "+jCourant.getPositionCourante().getNomCarreau());
+    }
+    public void afficheAuJoueurSuivant(){
+        System.out.println("");
+        System.out.println("*****************************************************************");
+        System.out.println("               Fin du tour. Au joueur Suivant !");
+        System.out.println("");
+        System.out.println("*****************************************************************");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
     }
     public void affichePayerLoyer(){
         System.out.println("*****************************************************************");
-        System.out.println("**                              payement de loyer          ******");
+        System.out.println("***********             payement de loyer          **************");
+        System.out.println("*****************************************************************");
         setChanged();
         notifyObservers(TypeCommande.PAYER_LOYER);
         clearChanged();

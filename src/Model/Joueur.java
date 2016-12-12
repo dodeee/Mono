@@ -95,7 +95,6 @@ public class Joueur {
                         }
                     }
                 } 
-                System.out.println(nb+" ça doit etre cb le joueur en a"); // 1
                 return nb;    
 	}
 

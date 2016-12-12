@@ -34,15 +34,10 @@ public class Controleur implements Observer{
         ihm.addObserver(this);    
     }
     public void jouer(){
-      // POUR TEST GROUPE : barbie doit payer 8  
-//        Joueur j1test =new Joueur("Ken");
-//        j1test.addPropriete((Propriete)this.carreaux.get(2));
-//        j1test.addPropriete((Propriete)this.carreaux.get(4));
-//        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
-//        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
-//        Joueur j2test =new Joueur("Barbie");
-//        this.joueurs.add(j1test);
-//        this.joueurs.add(j2test);
+ //      this.testPropriete();
+ //      this.testGare();
+ //     this.testCompagnie();
+      
         
         this.ihm.affichDep();
         this.setPositionDep();
@@ -199,7 +194,12 @@ public class Controleur implements Observer{
 	public void avancer(Joueur j) {            
             this.ihm.afficheAvLanceDes(j);
             this.setValDes();
-            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
+ 
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),12);
+             // POUR TEST GROUPE : mettre 3 à la place de valDes
+             // POUR TEST GARE : mettre 5 à la place de valDes
+             // POUR TEST COMPAGNIE : mettre 12 à la place de valDes et
+              System.out.println("valDes :"+valDes); 
             j.setPositionCourante(this.carreaux.get(numC));
 	}
 
@@ -220,6 +220,40 @@ public class Controleur implements Observer{
    
         this.joueurs = joueurs;
    
+         }
+         // POUR TOUS LES TEST : modifier avancer() et l'ihm : affichDep() où c'est indiqué
+         public void testPropriete(){
+             // POUR TEST : barbie doit payer 8  
+        Joueur j1test =new Joueur("Ken");
+        j1test.addPropriete((Propriete)this.carreaux.get(2));
+        j1test.addPropriete((Propriete)this.carreaux.get(4));   
+        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
+        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
+        Joueur j2test =new Joueur("Barbie");
+        this.joueurs.add(j1test);
+        this.joueurs.add(j2test);
+         }
+            public void testCompagnie(){
+             // POUR TEST : barbie doit payer 10*valDes 
+        Joueur j1test =new Joueur("Ken");
+        j1test.addPropriete((Propriete)this.carreaux.get(13));
+        j1test.addPropriete((Propriete)this.carreaux.get(29));   
+        ((Propriete)this.carreaux.get(13)).setProprietaire(j1test);
+        ((Propriete)this.carreaux.get(29)).setProprietaire(j1test);
+        Joueur j2test =new Joueur("Barbie");
+        this.joueurs.add(j1test);
+        this.joueurs.add(j2test);
+         }
+               public void testGare(){
+             // POUR TEST : barbie doit payer 50  
+        Joueur j1test =new Joueur("Ken");
+        j1test.addPropriete((Propriete)this.carreaux.get(6));
+        j1test.addPropriete((Propriete)this.carreaux.get(16));   
+        ((Propriete)this.carreaux.get(6)).setProprietaire(j1test);
+        ((Propriete)this.carreaux.get(16)).setProprietaire(j1test);
+        Joueur j2test =new Joueur("Barbie");
+        this.joueurs.add(j1test);
+        this.joueurs.add(j2test);
          }
 
    

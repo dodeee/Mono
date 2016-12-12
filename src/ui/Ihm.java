@@ -40,7 +40,7 @@ public class Ihm extends Observable{
                 j++;
             }                      
             if (choix==0){
-               // POUR TEST GROUPE, enlever le "if" et juste faire le else
+           //     POUR TOUS LES TEST, enlever le "if" et juste faire le else
                if (j<2){
                     System.out.println("Il n'y a pas assez de joueurs...");
                     choix=1;

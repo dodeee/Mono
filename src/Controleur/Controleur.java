@@ -40,17 +40,24 @@ public class Controleur implements Observer{
     }
     public void jouer(){
       // POUR TEST GROUPE : barbie doit payer 8  
-        Joueur j1test =new Joueur("Ken");
-        j1test.addPropriete((Propriete)this.carreaux.get(2));
-        j1test.addPropriete((Propriete)this.carreaux.get(4));
-        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
-        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
-        Joueur j2test =new Joueur("Barbie");
-        this.joueurs.add(j1test);
-        this.joueurs.add(j2test);
+//        Joueur j1test =new Joueur("Ken");
+//        j1test.addPropriete((Propriete)this.carreaux.get(2));
+//        j1test.addPropriete((Propriete)this.carreaux.get(4));
+//        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
+//        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
+//        Joueur j2test =new Joueur("Barbie");
+//        this.joueurs.add(j1test);
+//        this.joueurs.add(j2test);
         
         this.ihm.affichDep();
         this.setPositionDep();
+                        for (Groupe gr : groupes){
+                    System.out.println(gr.getCouleur());
+                    for (ProprieteAConstruire p : gr.getProprietes()){
+                        System.out.println(p.getNomCarreau());
+                    }
+                        
+                }
         while(this.joueurs.size()!=1){ // 1 seul joueur restant signifie qu'il est le gagnant           
             
             for (Joueur j : joueurs) {
@@ -132,9 +139,10 @@ public class Controleur implements Observer{
 				if(caseType.compareTo("P") == 0){
                                         boolean b=false;
 					for (Groupe g:groupes){
-                                            if (g.getCouleur().name()==data.get(i)[3]){
+                                            if (g.getCouleur().name().equals(data.get(i)[3])){
                                                 Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),g);
                                                 b=true;
+                                                g.addPropriete((ProprieteAConstruire) c);
                                                 carreaux.put(i+1,c); // remplit la liste avec le numéro des carreaux et le carreau
                                             }
                                         }
@@ -143,6 +151,7 @@ public class Controleur implements Observer{
                                             this.groupes.add(groupe);
                                             Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),groupe);
                                             carreaux.put(i+1,c); 
+                                            groupe.addPropriete((ProprieteAConstruire) c);
                                         }
                                         
                                         
@@ -175,6 +184,8 @@ public class Controleur implements Observer{
 		catch(IOException e){
 			System.err.println("[buildGamePlateau()] : Error while reading file!");
 		}
+                
+
 	}
 	
 	private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException
@@ -202,7 +213,7 @@ public class Controleur implements Observer{
             System.out.println(j.getNomJoueur());
             this.setValDes();
             System.out.println(valDes);
-            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),3); // POUR TEST GROUPE : remplacer valDes par 3
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes); // POUR TEST GROUPE : remplacer valDes par 3
             j.setPositionCourante(this.carreaux.get(numC));
 	}
 

@@ -16,9 +16,15 @@ public class Groupe {
             for (ProprieteAConstruire p : proprietes ){
                 nb=nb+1;
             }
+            System.out.println(nb+" ça doit etre 2"); //0
             return nb;
+            
                     
 	}
+
+    public ArrayList<ProprieteAConstruire> getProprietes() {
+        return proprietes;
+    }
 
     public CouleurPropriete getCouleur() {
         return couleur;

@@ -85,7 +85,7 @@ public class Joueur {
             return this.getNbPropCeGroupe(g)==g.getNbProprieteGr();
 	}
 
-	public int getNbPropCeGroupe(Groupe g) {
+	public int getNbPropCeGroupe(Groupe g) { // renvoie le nombre de prop qu'à le joueur du groupe g
             int nb=0;
 		for (Propriete p : proprietes){
                     if (p instanceof ProprieteAConstruire){

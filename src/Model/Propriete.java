@@ -19,8 +19,7 @@ public abstract class Propriete extends Carreaux {
 	 * 
 	 * @param jCourant
 	 */
-	public void acheterPropriete(Joueur jCourant) {
-            //if (proprietaire==null){
+	public void acheterPropriete(Joueur jCourant) { // vérification que le joueur a assez d'argent et ajout à sa liste de propriete si il a acheté
                 if (jCourant.getCash()>this.prix){
                     jCourant.setCash(jCourant.getCash()-this.prix);
                     this.setProprietaire(jCourant);
@@ -28,11 +27,10 @@ public abstract class Propriete extends Carreaux {
                 }else{
                     System.out.println("Vous n'avez pas asser d'argent.");
                 }                                   
-            //}
 	}
 
         
-	public void payerLoyer(Joueur jCourant, Joueur jProprio, int valDes){
+	public void payerLoyer(Joueur jCourant, Joueur jProprio, int valDes){ // effectue le transfert d'argent après le calcul du loyer
             int Loyer=this.calculLoyer(valDes,jProprio);
             if(Loyer<jCourant.getCash()){
                 jProprio.setCash(Loyer+jProprio.getCash());

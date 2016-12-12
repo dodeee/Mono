@@ -24,7 +24,7 @@ public class ProprieteAConstruire extends Propriete {
 
     @Override
     public int calculLoyer(int valDes, Joueur jProprio) {
-        if (jProprio.isGroupeComplet(groupe)){
+        if (jProprio.isGroupeComplet(groupe)){ // le proprio a t-il toutes les propriete du groupe
            return 2*this.loyer;
         }
         else {

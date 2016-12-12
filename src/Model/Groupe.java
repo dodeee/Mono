@@ -11,7 +11,7 @@ public class Groupe {
             this.proprietes=new ArrayList<>();
         }
 
-	public int getNbProprieteGr() {
+	public int getNbProprieteGr() { 
             int nb=0;
             for (ProprieteAConstruire p : proprietes ){
                 nb=nb+1;

@@ -19,7 +19,7 @@ public class Controleur implements Observer{
         private int des[]={0,0};
         private ArrayList<Joueur> jasupp;
 
-    public void setValDes() {
+    public void setValDes() { // lancer chaque dés
         this.des[0]=Utilitaire.lancesDes();
         System.out.println("Des A : "+des[0]);
         this.des[1]=Utilitaire.lancesDes();
@@ -42,7 +42,7 @@ public class Controleur implements Observer{
         
         this.ihm.affichDep();
         this.setPositionDep();
-        while(this.joueurs.size()!=1){
+        while(this.joueurs.size()!=1){ // 1 seul joueur restant signifie qu'il est le gagnant
             System.out.println("La ça craint");
             
             
@@ -50,7 +50,7 @@ public class Controleur implements Observer{
                 System.out.println("cash // "+j.getCash());
                 this.jouerTour(j);
             }
-            for (Joueur j : jasupp) {
+            for (Joueur j : jasupp) { // joueurs qui ont 0 de cash sont dans cette liste, supprimés à chaque tour de jeu
                 this.joueurs.remove(j);
             System.out.println(j.getNomJoueur()+" c fait dégage");
                 
@@ -64,9 +64,9 @@ public class Controleur implements Observer{
     public void jouerTour(Joueur j){
         this.jCourant=j;
         boolean rejouer = true;
-        while(rejouer && j.getCash()!=0){
+        while(rejouer && j.getCash()!=0){ // la condition sur le cash sert à empêcher un joueur qui aurait fait un double et "perdu" 
             avancer(j);
-            if (!Utilitaire.desEgaux(des[0], des[1])){
+            if (!Utilitaire.desEgaux(des[0], des[1])){ // si pas de double :
                 rejouer=false;
                 
             }else {
@@ -74,30 +74,28 @@ public class Controleur implements Observer{
             }
             
             System.out.println("case :: "+this.jCourant.getPositionCourante().getNumCarreau()+"       "+this.jCourant.getPositionCourante().getNomCarreau());
-            System.out.println("la");
             int i = jCourant.getPositionCourante().getNumCarreau();
-            System.out.println("lala");
 
             if (carreaux.get(i) instanceof AutreCarreau){
                 System.out.println("**** Le carreau sur lequel vous êtes tombé est un carreaux incategorisé. ****");
             }
             else {
-                if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=null){
-                    if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=jCourant){           
+                if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=null){ // proprio?
+                    if(((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire()!=jCourant){  // est-ce moi?         
                         this.ihm.affichePayerLoyer();   
                     }
                 }
                 else{
-                    this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
+                    this.ihm.affichetourdejeu(this.jCourant.getNomJoueur()); // on va acheter la propriete si on veut/peut
                 }      
             }
         }
         if(this.jCourant.getCash()==0){
             for (Propriete p : jCourant.getProprietes()) {
-               System.out.println("j'ai une propriete en -");
-                p.setProprietaire(null);
+                p.setProprietaire(null); // 
            } 
-            this.jasupp.add(jCourant);
+            System.out.println("Toutes les proprietes de "+jCourant.getNomJoueur()+" ont ete réinitialisé");
+            this.jasupp.add(jCourant); // il sera supprimé à la fin du tout de jeu
             
             
         }
@@ -105,10 +103,8 @@ public class Controleur implements Observer{
     
     
         
-    public void setPositionDep(){
-        System.out.println("allloooo");
+    public void setPositionDep(){ // tous les joueurs commencent à la case 1 : Départ
         for(Joueur j:joueurs){
-            System.out.println("ole");
             j.setPositionCourante(carreaux.get(1));
         }
     }
@@ -132,16 +128,16 @@ public class Controleur implements Observer{
                                             if (g.getCouleur().name()==data.get(i)[3]){
                                                 Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),g);
                                                 b=true;
-                                                carreaux.put(i+1,c);
+                                                carreaux.put(i+1,c); // remplit la liste avec le numéro des carreaux et le carreau
                                             }
                                         }
                                         if (b==false){
                                             Groupe groupe =new Groupe(CouleurPropriete.valueOf(data.get(i)[3]));
                                             this.groupes.add(groupe);
                                             Carreaux c = new ProprieteAConstruire(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[4]),Integer.parseInt(data.get(i)[5]),groupe);
-                                            carreaux.put(i+1,c);
+                                            carreaux.put(i+1,c); 
                                         }
-                                        //ProprieteAConstruire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[4]));
+                                        
                                         
                                        
 				}
@@ -195,13 +191,12 @@ public class Controleur implements Observer{
 	 * @param j
 	 * @param nb
 	 */
-	public void avancer(Joueur j) {
+	public void avancer(Joueur j) { // un joueur passe d'un case à une autre
             System.out.println(j.getNomJoueur());
             this.setValDes();
             System.out.println(valDes);
             int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
             j.setPositionCourante(this.carreaux.get(numC));
-            // si a = b then recommencer tour
 	}
 
 	/**
@@ -210,10 +205,10 @@ public class Controleur implements Observer{
 	 * @param nb
 	 */
 	public int calculNouvPos(int num, int nbA) {
-            if(num+nbA<=40){ 
+            if(num+nbA<=40){ // on ne passe pas par la case Départ
                 return num+nbA;
             }
-            else{
+            else{ // on passe à/par la case départ
                 return ((num+nbA)%41)+1;
             }
         }
@@ -261,9 +256,9 @@ public class Controleur implements Observer{
             else if(arg == TypeCommande.LANCER_PARTIE){
                 this.jCourant=this.joueurs.get(0);
             }else if(arg == TypeCommande.ACHETER_CASE){               
-                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant);
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant); // le joueur tente une acquisition
             }else if(arg == TypeCommande.PAYER_LOYER){
-                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes);
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes); // le joueur paye le proprio
             }else {
             }
         }    

@@ -40,11 +40,18 @@ public class Controleur implements Observer{
     }
     public void jouer(){
         
+        Joueur j1test =new Joueur("Ken");
+        j1test.addPropriete((Propriete)this.carreaux.get(2));
+        j1test.addPropriete((Propriete)this.carreaux.get(4));
+        ((Propriete)this.carreaux.get(2)).setProprietaire(j1test);
+        ((Propriete)this.carreaux.get(4)).setProprietaire(j1test);
+        Joueur j2test =new Joueur("Barbie");
+        this.joueurs.add(j1test);
+        this.joueurs.add(j2test);
+        
         this.ihm.affichDep();
         this.setPositionDep();
-        while(this.joueurs.size()!=1){ // 1 seul joueur restant signifie qu'il est le gagnant
-            System.out.println("La ça craint");
-            
+        while(this.joueurs.size()!=1){ // 1 seul joueur restant signifie qu'il est le gagnant           
             
             for (Joueur j : joueurs) {
                 System.out.println("cash // "+j.getCash());
@@ -52,7 +59,7 @@ public class Controleur implements Observer{
             }
             for (Joueur j : jasupp) { // joueurs qui ont 0 de cash sont dans cette liste, supprimés à chaque tour de jeu
                 this.joueurs.remove(j);
-            System.out.println(j.getNomJoueur()+" c fait dégage");
+            System.out.println(j.getNomJoueur()+" a été éliminé");
                 
             }
             this.jasupp.clear();
@@ -70,7 +77,7 @@ public class Controleur implements Observer{
                 rejouer=false;
                 
             }else {
-                     System.out.println("DOUBLE");
+                     System.out.println("DOUBLE, "+jCourant.getNomJoueur()+"va rejouer");
             }
             
             System.out.println("case :: "+this.jCourant.getPositionCourante().getNumCarreau()+"       "+this.jCourant.getPositionCourante().getNomCarreau());
@@ -195,7 +202,7 @@ public class Controleur implements Observer{
             System.out.println(j.getNomJoueur());
             this.setValDes();
             System.out.println(valDes);
-            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),valDes);
+            int numC= calculNouvPos(j.getPositionCourante().getNumCarreau(),3);
             j.setPositionCourante(this.carreaux.get(numC));
 	}
 

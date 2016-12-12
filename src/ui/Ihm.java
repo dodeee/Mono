@@ -35,15 +35,15 @@ public class Ihm extends Observable{
                 j++;
             }                      
             if (choix==0){
-                if (j<2){
-                    System.out.println("Il n'y a pas assez de joueurs...");
-                    choix=1;
-                }
-                else{
+//                if (j<2){
+//                    System.out.println("Il n'y a pas assez de joueurs...");
+//                    choix=1;
+//                }
+//                else{
                     setChanged();
                     notifyObservers(TypeCommande.LANCER_PARTIE);
                     clearChanged();
-                }
+        //        }
             }
         }
     }

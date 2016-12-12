@@ -6,9 +6,11 @@ public class Gare extends Propriete {
         super(prix, numero, nomCarreau);
     }
 
+  
 
     @Override
-    public int calculLoyer(int valDes, Joueur jProprio) {
+    public int calculLoyer(int valDes, Joueur jProprio) {        
         return 25*jProprio.getnbGare();
+        
     }
-}//
+}

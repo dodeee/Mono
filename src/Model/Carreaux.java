@@ -5,9 +5,9 @@ public abstract class Carreaux {
 	private int numero;
 	private String nomCarreau;
 
-	public int getNumCarreau() {
-		return numero;
-	}
+    public int getNumCarreau() {
+        return numero;
+    }
 
     public Carreaux(int numero, String nomCarreau) {
         this.numero = numero;

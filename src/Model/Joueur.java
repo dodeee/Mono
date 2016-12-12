@@ -11,25 +11,9 @@ public class Joueur {
 
     public Joueur(String nomJoueur) {
         this.nomJoueur = nomJoueur;
+        this.proprietes = new ArrayList<>();
     }
 
-	/**
-	 * 
-	 * @param l
-	 */
-	public void payerLoyer(int l) {
-		// TODO - implement Joueur.payerLoyer
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param l
-	 */
-	public void recevoirLoyer(int l) {
-		// TODO - implement Joueur.recevoirLoyer
-		throw new UnsupportedOperationException();
-	}
 
 	public int getCash() {
 		return this.cash;
@@ -61,14 +45,13 @@ public class Joueur {
 	}
 
 	public int getnbGare() {
-            int nbgare=0;
-            
-            for (Propriete g:proprietes) {
-                if(g instanceof Gare){
-                    nbgare++;
+            int nb=0;
+            for(Propriete p : this.proprietes){
+                if(p instanceof Gare){
+                    nb++;
                 }
             }
-            return nbgare;
+            return nb;
 	}
 
 	public Carreaux getPositionCourante() {
@@ -84,14 +67,13 @@ public class Joueur {
 	}
 
 	public int getNBCompagnie() {
-            int nbcompagnie=0;
-            
-            for (Propriete p:proprietes) {
-                if(p instanceof Compagnie){
-                    nbcompagnie++;
+            int res=0;
+            for (Propriete c: proprietes) {
+                if (c instanceof Compagnie){
+                    res++;
                 }
             }
-            return nbcompagnie;
+            return res;
 	}
 
 	/**
@@ -115,5 +97,10 @@ public class Joueur {
                 } 
                 return nb;    
 	}
+
+    public ArrayList<Propriete> getProprietes() {
+        return proprietes;
+    }
+        
 
 }

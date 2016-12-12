@@ -16,6 +16,7 @@ public class Compagnie extends Propriete {
         }else {
             return valDes*6;
         }
+        
     }
 
 }//

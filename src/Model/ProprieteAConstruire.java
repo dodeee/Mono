@@ -1,11 +1,12 @@
 package Model;
 
 public class ProprieteAConstruire extends Propriete {
-
-    	private Groupe Groupe;
-    public ProprieteAConstruire(int numero,String nomCarreau,int prix, Groupe groupe) {
+    private int loyer;
+    private Groupe groupe;
+    public ProprieteAConstruire(int numero,String nomCarreau,int prix,int loyer, Groupe g) {
         super(prix, numero, nomCarreau);
-        this.Groupe = groupe;
+        this.groupe=g;
+        this.loyer=loyer;
     }
 
    
@@ -13,21 +14,21 @@ public class ProprieteAConstruire extends Propriete {
 
 
 	public int getLoyerNu() {
-		return super.loyer*2;
+		return this.loyer;
 	}
 
 	public Groupe getGroupe() {
-		return Groupe;
+		return groupe;
 	}
 
 
     @Override
     public int calculLoyer(int valDes, Joueur jProprio) {
-        if (jProprio.isGroupeComplet(Groupe)){
-           return 2*this.getLoyerNu();
+        if (jProprio.isGroupeComplet(groupe)){
+           return 2*this.loyer;
         }
         else {
-            return this.getLoyerNu();
+            return this.loyer;
         }
             
     }

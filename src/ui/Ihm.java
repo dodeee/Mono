@@ -54,13 +54,13 @@ public class Ihm extends Observable{
         }
     }
     
-    public void affichetourdejeu(String nomjoueur){
+    public void affichetourdejeu(String nomjoueur,int prix){
         Scanner sc = new Scanner(System.in);   	
         System.out.println("\n***************************************************************");
         System.out.println("                 *  Monopoly               *");
         System.out.println("           Joueur :"+nomjoueur);
         System.out.println("*****************************************************************");
-        System.out.println("      * 1- Acheter la case                                      *");
+        System.out.println("      * 1- Acheter la case   ("+prix+")                         *");
         System.out.println("      * 0- Passer son tour                                      *");
         System.out.println("*****************************************************************");
         System.out.print("        * Votre Choix : "); 

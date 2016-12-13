@@ -81,7 +81,7 @@ public class Controleur implements Observer{
                     }
                 }
                 else{
-                    this.ihm.affichetourdejeu(this.jCourant.getNomJoueur());
+                    this.ihm.affichetourdejeu(this.jCourant.getNomJoueur(),((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getPrix());
                 }
             }
             this.ihm.affichSituationJoueur(jCourant);
@@ -266,14 +266,14 @@ public class Controleur implements Observer{
             }
             else if(arg == TypeCommande.LANCER_PARTIE){
                 this.jCourant=this.joueurs.get(0);
-            }else if(arg == TypeCommande.ACHETER_CASE){               
-                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant); // le joueur tente une acquisition
-            }else if(arg == TypeCommande.PAYER_LOYER){
+            }else if(arg == TypeCommande.ACHETER_CASE){
                 if (this.jCourant.getCash()>((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getPrix()){
-                    ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes);    
+                    ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).acheterPropriete(jCourant); // le joueur tente une acquisition
                 }else {
                     this.ihm.affichePasDeSous();
                 }
+            }else if(arg == TypeCommande.PAYER_LOYER){
+                ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).payerLoyer(jCourant, ((Propriete)this.carreaux.get(this.jCourant.getPositionCourante().getNumCarreau())).getProprietaire(), valDes);       
             }else if(arg==TypeCommande.JOUEUR_SUIVANT){
             }
         }    

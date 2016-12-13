@@ -125,6 +125,9 @@ public class Ihm extends Observable{
             System.out.println("");
         }
     }
+    public void affichePasDeSous(){
+        System.out.println("***  Pas assez de sous pour acheter la propriété.");
+    }
     public void afficheCaseCouranteJoueur(Joueur jCourant){
         System.out.println("case : "+jCourant.getPositionCourante().getNumCarreau()+"       "+jCourant.getPositionCourante().getNomCarreau());
     }

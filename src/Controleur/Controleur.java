@@ -277,10 +277,6 @@ public class Controleur implements Observer{
             }else if(arg==TypeCommande.JOUEUR_SUIVANT){
             }
         }    
-        
-             
-    
-
 }
 
           
